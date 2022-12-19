@@ -14,7 +14,7 @@ impl User {
     }
 
     pub fn name(&self) -> &str {
-        &self.name.as_str()
+        self.name.as_str()
     }
 
     pub fn age(&self) -> u32 {
