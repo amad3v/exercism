@@ -260,9 +260,7 @@ impl Hand {
     }
 }
 
-/**
- * Main
- */
+/// Main
 pub fn winning_hands<'a>(hands: &[&'a str]) -> Vec<&'a str> {
     if hands.len() <= 1 {
         return hands.into();
@@ -294,11 +292,7 @@ pub fn winning_hands<'a>(hands: &[&'a str]) -> Vec<&'a str> {
             .rank
             .major;
 
-        winners = winners
-            .iter()
-            .filter(|hand| hand.rank.major == highest_major)
-            .copied()
-            .collect();
+        winners.retain(|hand| hand.rank.major == highest_major);
     }
 
     if winners.len() > 1 {
@@ -309,11 +303,7 @@ pub fn winning_hands<'a>(hands: &[&'a str]) -> Vec<&'a str> {
             .rank
             .minor;
 
-        winners = winners
-            .iter()
-            .filter(|hand| hand.rank.minor == highest_minor)
-            .copied()
-            .collect();
+        winners.retain(|hand| hand.rank.minor == highest_minor);
     }
 
     if winners.len() > 1 {
@@ -327,11 +317,7 @@ pub fn winning_hands<'a>(hands: &[&'a str]) -> Vec<&'a str> {
                 .rank
                 .left[i];
 
-            winners = winners
-                .iter()
-                .filter(|hand| hand.rank.left[i] == highest_low)
-                .copied()
-                .collect();
+            winners.retain(|hand| hand.rank.left[i] == highest_low);
 
             if winners.len() == 1 {
                 break;
